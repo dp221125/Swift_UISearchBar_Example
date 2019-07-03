@@ -1,0 +1,16 @@
+[
+      {"name":"일본","capital":"도쿄","currency":"엔"},
+      {"name":"중국","capital":"베이징","currency":"위안"},
+      {"name":"영국","capital":"런던","currency":"파운드"},
+      {"name":"스위스","capital":"베른","currency":"프랑"},
+      {"name":"인도","capital":"뉴델리","currency":"루피"},
+      {"name":"필리핀","capital":"마닐라","currency":"페소"},
+      {"name":"스웨덴","capital":"스톡홀롬","currency":"크루나"},
+      {"name":"러시아","capital":"모스크바","currency":"루블"},
+      {"name":"브라질","capital":"브라질리아","currency":"레알"},
+      {"name":"베트남","capital":"하노이","currency":"동"},
+      {"name":"인도네시아","capital":"자카르타","currency":"루피아"},
+      {"name":"쿠웨이트","capital":"쿠웨이트","currency":"디나르"},
+      {"name":"태국","capital":"방콕","currency":"바트"},
+      {"name":"미국","capital":"워싱턴 D.C.","currency":"달러"}
+]
