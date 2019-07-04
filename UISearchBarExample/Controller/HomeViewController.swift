@@ -9,72 +9,107 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    private var country = countryData
+    private var filteredCountry = [Country]()
 
-    var country = countryData
-    
-    var ownView: HomeView {
-        return self.view as! HomeView
+    private let searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Country"
+        return searchController
+    }()
+
+    private var ownView: HomeView {
+        return view as! HomeView
     }
-    
-    func makeNavigationItem() {
-        self.navigationItem.title = "국가들"
+
+    private func makeNavigationItem() {
+        navigationItem.title = "국가와 화폐"
+        navigationItem.searchController = self.searchController
     }
-    
-    func registerTableView() {
-        ownView.mainTableView.register(CountryNameCell.self, forCellReuseIdentifier: "CountryName")
-    }
-    
-    func deSelectedRow() {
-        
-        if let index = ownView.mainTableView.indexPathForSelectedRow {
-            ownView.mainTableView.deselectRow(at: index, animated: true)
+
+    private func filterContentForSearchKeyWord(_ searchKeyword: String) {
+        self.filteredCountry = self.country.filter { (country: Country) -> Bool in
+
+            country.name.contains(searchKeyword) || country.capital.contains(searchKeyword)
         }
-        
+        self.ownView.mainTableView.reloadData()
     }
-    
+
+    private func registerTableView() {
+        self.ownView.mainTableView.register(CountryNameCell.self, forCellReuseIdentifier: "CountryName")
+    }
+
+    private func deSelectedRow() {
+        if let index = ownView.mainTableView.indexPathForSelectedRow {
+            self.ownView.mainTableView.deselectRow(at: index, animated: true)
+        }
+    }
+
     override func loadView() {
         let view = HomeView()
         self.view = view
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeNavigationItem()
-        registerTableView()
-        ownView.mainTableView.dataSource = self
-        ownView.mainTableView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        deSelectedRow()
+        self.makeNavigationItem()
+        self.registerTableView()
+        self.ownView.mainTableView.dataSource = self
+        self.ownView.mainTableView.delegate = self
+        self.searchController.searchResultsUpdater = self
+        definesPresentationContext = true
     }
 
-
+    override func viewWillAppear(_: Bool) {
+        self.deSelectedRow()
+    }
 }
+
 extension HomeViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return country.count
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        if self.searchController.isActive {
+            return self.filteredCountry.count
+        }
+        return self.country.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let nameCell = tableView.dequeueReusableCell(withIdentifier: "CountryName", for: indexPath) as? CountryNameCell {
             nameCell.accessoryType = .disclosureIndicator
-            nameCell.titleLabel.text = country[indexPath.row].name
-            nameCell.subTitleLabel.text = country[indexPath.row].capital
+
+            if self.searchController.isActive {
+                nameCell.titleLabel.text = self.filteredCountry[indexPath.row].name
+                nameCell.subTitleLabel.text = self.filteredCountry[indexPath.row].capital
+            } else {
+                nameCell.titleLabel.text = self.country[indexPath.row].name
+                nameCell.subTitleLabel.text = self.country[indexPath.row].capital
+            }
             return nameCell
         }
-        
-        return UITableViewCell()
+
+        fatalError()
     }
 }
+
 extension HomeViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
-        detailViewController.currency = country[indexPath.row].currency
-        
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        detailViewController.currency = self.country[indexPath.row].currency
+
+        if self.searchController.isActive {
+            detailViewController.currency = self.filteredCountry[indexPath.row].currency
+        }
+
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchKeyword = searchController.searchBar.text else {
+            return
+        }
+        self.filterContentForSearchKeyWord(searchKeyword)
     }
 }

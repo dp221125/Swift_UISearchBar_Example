@@ -9,43 +9,43 @@
 import UIKit
 
 class CountryNameCell: UITableViewCell {
-    
     let titleLabel: UILabel = {
-        return UILabel().makeLabelItem(size: 16)
+        UILabel().makeLabelItem(size: 16)
     }()
-    
+
     let subTitleLabel: UILabel = {
-        return UILabel().makeLabelItem(size: 13)
+        UILabel().makeLabelItem(size: 13)
     }()
-    
-    let labelStackView: UIStackView = {
+
+    private let labelStackView: UIStackView = {
         let labelStackView = UIStackView()
         labelStackView.axis = NSLayoutConstraint.Axis.vertical
         labelStackView.distribution = UIStackView.Distribution.fillEqually
         return labelStackView
     }()
-    
-    func labelStackViewConstraint() {
-        labelStackView.translatesAutoresizingMaskIntoConstraints = false
+
+    private func labelStackViewConstraint() {
+        self.labelStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             labelStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             labelStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
-            ])
+            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(labelStackView)
-        labelStackViewConstraint()
-        labelStackView.addArrangedSubview(titleLabel)
-        labelStackView.addArrangedSubview(subTitleLabel)
+        addSubview(self.labelStackView)
+        self.labelStackViewConstraint()
+        self.labelStackView.addArrangedSubview(self.titleLabel)
+        self.labelStackView.addArrangedSubview(self.subTitleLabel)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
+
 extension UILabel {
     func makeLabelItem(size: CGFloat) -> UILabel {
         let makeLabel = UILabel()
