@@ -9,38 +9,37 @@
 import UIKit
 
 class HomeView: UIView {
-    
     let mainTableView: UITableView = {
         let mainTableView = UITableView()
         mainTableView.tableFooterView = UIView()
-       return mainTableView
+        return mainTableView
     }()
-    
-    func mainTableViewConstraint() {
-        mainTableView.translatesAutoresizingMaskIntoConstraints = false
+
+    private func mainTableViewConstraint() {
+        self.mainTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mainTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             mainTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             mainTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            mainTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-            ])
+            mainTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
-    
-    func addViewItem() {
-        addSubview(mainTableView)
+
+    private func addViewItem() {
+        addSubview(self.mainTableView)
     }
-    
-    func addViewConstraint() {
-        mainTableViewConstraint()
+
+    private func addViewConstraint() {
+        self.mainTableViewConstraint()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        addViewItem()
-        addViewConstraint()
+        self.addViewItem()
+        self.addViewConstraint()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

@@ -9,19 +9,18 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
     var currency: String?
-    
-    var ownView: DetailView {
+
+    private var ownView: DetailView {
         return self.view as! DetailView
     }
-    
+
     override func loadView() {
-        self.view = DetailView()
+        view = DetailView()
     }
-    
+
     override func viewDidLoad() {
-        self.navigationItem.title = "화폐단위"
-        ownView.currencyLabel.text = currency
+        navigationItem.title = "화폐단위"
+        self.ownView.currencyLabel.text = self.currency
     }
 }

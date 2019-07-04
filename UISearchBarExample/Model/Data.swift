@@ -10,16 +10,16 @@ import UIKit
 
 let countryData = loadData()
 
-func loadData() -> [Country] {
+private func loadData() -> [Country] {
     let jsonDecoder = JSONDecoder()
     if let dataAsset = NSDataAsset(name: "Data") {
-        do{
+        do {
             let country = try jsonDecoder.decode([Country].self, from: dataAsset.data)
             return country
-        }catch{
+        } catch {
             print(error.localizedDescription)
         }
     }
-    
+
     return [Country]()
 }
