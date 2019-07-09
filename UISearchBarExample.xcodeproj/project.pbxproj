@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18B2FA9EB40894BA480C51D8 /* Pods_UISearchBarExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00468DB5146B0FC25C859DD /* Pods_UISearchBarExample.framework */; };
 		B4292A5D22CC7E6A008AD323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4292A5C22CC7E6A008AD323 /* AppDelegate.swift */; };
 		B4292A5F22CC7E6A008AD323 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4292A5E22CC7E6A008AD323 /* HomeViewController.swift */; };
 		B4292A6422CC7E6B008AD323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4292A6322CC7E6B008AD323 /* Assets.xcassets */; };
@@ -20,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06C10C60B301D605A89E6DD6 /* Pods-UISearchBarExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UISearchBarExample.release.xcconfig"; path = "Target Support Files/Pods-UISearchBarExample/Pods-UISearchBarExample.release.xcconfig"; sourceTree = "<group>"; };
+		44215E291C75234624A694AF /* Pods-UISearchBarExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UISearchBarExample.debug.xcconfig"; path = "Target Support Files/Pods-UISearchBarExample/Pods-UISearchBarExample.debug.xcconfig"; sourceTree = "<group>"; };
+		B00468DB5146B0FC25C859DD /* Pods_UISearchBarExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UISearchBarExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4292A5922CC7E6A008AD323 /* UISearchBarExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UISearchBarExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4292A5C22CC7E6A008AD323 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4292A5E22CC7E6A008AD323 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -39,17 +43,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B2FA9EB40894BA480C51D8 /* Pods_UISearchBarExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6ED7CA9609FF78819EFF870B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				44215E291C75234624A694AF /* Pods-UISearchBarExample.debug.xcconfig */,
+				06C10C60B301D605A89E6DD6 /* Pods-UISearchBarExample.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B4292A5022CC7E6A008AD323 = {
 			isa = PBXGroup;
 			children = (
 				B4292A5B22CC7E6A008AD323 /* UISearchBarExample */,
 				B4292A5A22CC7E6A008AD323 /* Products */,
+				6ED7CA9609FF78819EFF870B /* Pods */,
+				B6ECC3ED0719D8EF009B7D62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +128,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B6ECC3ED0719D8EF009B7D62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B00468DB5146B0FC25C859DD /* Pods_UISearchBarExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4292A6B22CC7E6B008AD323 /* Build configuration list for PBXNativeTarget "UISearchBarExample" */;
 			buildPhases = (
+				5D95D2B3A3148BD955836B19 /* [CP] Check Pods Manifest.lock */,
 				B4292A5522CC7E6A008AD323 /* Sources */,
 				B4292A5622CC7E6A008AD323 /* Frameworks */,
 				B4292A5722CC7E6A008AD323 /* Resources */,
+				BFCDE8D567CF516F6F86A035 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,6 +202,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5D95D2B3A3148BD955836B19 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UISearchBarExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFCDE8D567CF516F6F86A035 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UISearchBarExample/Pods-UISearchBarExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UISearchBarExample/Pods-UISearchBarExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4292A5522CC7E6A008AD323 /* Sources */ = {
@@ -324,6 +402,7 @@
 		};
 		B4292A6C22CC7E6B008AD323 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44215E291C75234624A694AF /* Pods-UISearchBarExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -342,6 +421,7 @@
 		};
 		B4292A6D22CC7E6B008AD323 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06C10C60B301D605A89E6DD6 /* Pods-UISearchBarExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
